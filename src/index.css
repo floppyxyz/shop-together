@@ -21,6 +21,10 @@ body {
   background-size: 100%;
 }
 
+.stripe {
+  text-decoration: line-through;
+}
+
 .loginButtons {
   list-style: none;
   position: fixed;

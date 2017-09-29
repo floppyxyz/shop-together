@@ -11,6 +11,8 @@ class AuthenticatedLayout extends React.Component {
 		if(user) {
 			this.props.handleLogin();
 		}
+
+		return null;
 	};
 
 	render() {

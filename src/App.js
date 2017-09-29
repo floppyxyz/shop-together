@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
 import AuthenticatedLayout from './components/AuthenticatedLayout';
 import Login from './components/Login';
 import firebaseApp from './firebaseApp';
+import Main from "./Main";
 
 class App extends Component {
 
-	componentWillMount(){
+	componentWillMount() {
 		this.handleLogout();
 	}
 
@@ -15,40 +15,34 @@ class App extends Component {
 		this.setState({
 			isLoggedIn: true,
 		});
+
+		return null;
 	};
 
 	handleLogout = () => {
 		this.setState({
 			isLoggedIn: false,
 		});
-    }
+	}
 
-    logout = () => {
+	logout = () => {
 		firebaseApp.auth().signOut()
-      this.handleLogout();
-    };
+		this.handleLogout();
+	};
 
-  render() {
-    return (
-      <div className="App">
-          <AuthenticatedLayout
-              handleLogin={this.handleLogin}
-              isLoggedIn={this.state.isLoggedIn}
-              loginComponent={<Login handleLogin={this.handleLogin}/>}
-          >
-
-              <header className="App-header">
-                  <img src={logo} className="App-logo" alt="logo" />
-                  <h1 className="App-title">Welcome to React</h1>
-              </header>
-              <button onClick={this.logout}>Logout</button>
-              <p className="App-intro">
-                  To get started, edit <code>src/App.js</code> and save to reload.
-              </p>
-          </AuthenticatedLayout>
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div className="App">
+				<AuthenticatedLayout
+					handleLogin={this.handleLogin}
+					isLoggedIn={this.state.isLoggedIn}
+					loginComponent={<Login handleLogin={this.handleLogin}/>}
+				>
+					<Main logout={this.logout}></Main>
+				</AuthenticatedLayout>
+			</div>
+		);
+	}
 }
 
 export default App;
